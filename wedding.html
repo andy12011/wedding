@@ -51,7 +51,7 @@
 
         .hero {
             height: 80vh;
-            background-image: url('images/background.png?auto=format&fit=crop&w=1050&q=80');
+            background-image: url('images/background.jpg?auto=format&fit=crop&w=1050&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -80,33 +80,33 @@
             max-width: 100%;
             margin: 0 auto;
             aspect-ratio: 16 / 9;
-            /* 更適合橫式圖片，同時兼容直式 */
+            background-color: #f5f5f5;
+            border-radius: 12px;
         }
 
         .carousel-track {
             display: flex;
             transition: transform 0.5s ease;
-        }
-
-        .carousel-track img {
-            flex: 0 0 100%;
-            /* 每個圖片佔據 100% 容器寬度 */
             width: 100%;
             height: 100%;
-            object-position: center center;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
             border-radius: 12px;
         }
 
-        .portrait {
-            object-fit: contain;
-            /* 直式圖片完整顯示 */
+        .slide img {
+            max-width: 100%;
             max-height: 100%;
-            /* 防止直式圖片溢出 */
-        }
-
-        .landscape {
-            object-fit: cover;
-            /* 橫式圖片填充容器 */
+            object-fit: contain;
+            border-radius: 12px;
         }
 
         .carousel-buttons {
@@ -167,21 +167,107 @@
 
         .info-images {
             display: flex;
-            flex-direction: column;
             gap: 16px;
             margin-top: 16px;
         }
 
         .info-images img {
-            width: 80%;
-            margin: 0 auto;
-            border-radius: 12px;
+            max-width: 60%;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .info-images img:hover {
+            transform: scale(1.1);
         }
 
         .button-container {
             display: flex;
             justify-content: center;
             margin-top: 16px;
+        }
+
+        /* Modal 背景 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        /* Modal 內容 */
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        /* 關閉按鈕 */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 圖片說明文字 */
+        #caption {
+            text-align: center;
+            padding: 10px;
+            color: #ccc;
+        }
+
+
+        /* 倒數計時器樣式 */
+        #countdown {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #countdown h2 {
+            font-size: 2.4em;
+            margin-bottom: 10px;
+            color: #d17c3a;
+            font-weight: bold;
+        }
+
+        #timer {
+            font-size: 3em;
+            color: #fff;
+            background: linear-gradient(145deg, #ffb3b3, #ff6666);
+            padding: 20px 30px;
+            border-radius: 15px;
+            display: inline-block;
+            font-weight: bold;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        #timer span {
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        #timer:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -198,20 +284,27 @@
         <h1>楊書維 ❤ 莊玟芯</h1>
         <p>誠摯邀請您一同見證幸福時刻</p>
     </section>
+    <!-- 倒數計時器 -->
+    <section id="countdown">
+        <h2>婚禮倒數</h2>
+        <div id="timer">
+            <span id="days"></span>天
+            <span id="hours"></span>小時
+            <span id="minutes"></span>分鐘
+            <span id="seconds"></span>秒
+        </div>
+    </section>
 
     <section id="gallery">
-        <h2>💍 婚紗紀實</h2>
+        <h2>💍 婚紗照</h2>
         <div class="carousel">
             <div class="carousel-track" id="carouselTrack">
-
-                <!-- 原始圖片 -->
-                <img class="portrait" src="images/wedding1.jpg" alt="婚紗1" loading="lazy">
-                <img class="portrait" src="images/wedding2.jpg" alt="婚紷2" loading="lazy">
-                <img class="landscape" src="images/wedding3.jpg" alt="婚紷3" loading="lazy">
-                <img class="landscape" src="images/wedding4.jpg" alt="婚紷4" loading="lazy">
-                <img class="landscape" src="images/wedding5.jpg" alt="婚紷5" loading="lazy">
-                <img class="landscape" src="images/wedding6.jpg" alt="婚紷6" loading="lazy">
-
+                <div class="slide"><img src="images/wedding1.jpg" alt="婚紗1" loading="lazy"></div>
+                <div class="slide"><img src="images/wedding2.jpg" alt="婚紗2" loading="lazy"></div>
+                <div class="slide"><img src="images/wedding3.jpg" alt="婚紗3" loading="lazy"></div>
+                <div class="slide"><img src="images/wedding4.jpg" alt="婚紗4" loading="lazy"></div>
+                <div class="slide"><img src="images/wedding5.jpg" alt="婚紗5" loading="lazy"></div>
+                <div class="slide"><img src="images/wedding6.jpg" alt="婚紗6" loading="lazy"></div>
             </div>
             <div class="carousel-arrows">
                 <button class="arrow" onclick="moveSlide(currentIndex - 1)">❮</button>
@@ -241,58 +334,84 @@
         <p>建議搭乘捷運至【台北小巨蛋站】，步行約 3 分鐘即可抵達文華東方酒店。</p>
         <p>飯店備有免費停車位，開車前來的賓客，離開前記得找工作人員拿磁卡抵銷。</p>
         <div class="info-images">
-            <img src="images/hotel1.jpg" alt="飯店外觀或入口" loading="lazy">
-            <img src="images/hotel2.jpg" alt="婚宴會場示意圖" loading="lazy">
+            <img src="images/hotel1.jpg" alt="飯店路線圖" loading="lazy" onclick="openModal(this)">
+            <img src="images/hotel2.jpg" alt="婚宴會場圖" loading="lazy" onclick="openModal(this)">
+        </div>
+        <div id="imageModal" class="modal" onclick="closeModal(event)">
+            <span class="close" onclick="closeModal(event)">&times;</span>
+            <img class="modal-content" id="modalImg">
+            <div id="caption"></div>
         </div>
         <div class="button-container">
-            <a class="button" href="https://maps.google.com/?q=文華東方酒店" target="_blank">查看地圖</a>
+            <a class="button" href="https://www.google.com/maps?q=文華東方酒店&hl=zh-TW" target="_blank">前往 Google 地圖</a>
         </div>
     </section>
 
     <script>
-        let currentIndex = 1; // 從第一張真實圖片開始
+        updateCountdown()
+        let currentIndex = 1;
         const track = document.getElementById('carouselTrack');
         const buttons = document.querySelectorAll('.carousel-buttons button');
-        const totalSlides = 6; // 真實圖片數量（不含複製的頭尾）
+        const totalSlides = 6;
 
         function moveSlide(index) {
-            // 限制 index 範圍，考慮複製的頭尾
-            if (index < 0) {
-                // 從第一張向前，跳到最後一張
+            if (index < 1) {
                 currentIndex = totalSlides;
-                track.style.transition = 'none'; // 禁用動畫
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                setTimeout(() => {
-                    track.style.transition = 'transform 0.5s ease'; // 恢復動畫
-                    moveSlide(totalSlides);
-                }, 0);
-                return;
-            } else if (index > totalSlides + 1) {
-                // 從最後一張向後，跳到第一張
+            } else if (index > totalSlides) {
                 currentIndex = 1;
-                track.style.transition = 'none'; // 禁用動畫
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                setTimeout(() => {
-                    track.style.transition = 'transform 0.5s ease'; // 恢復動畫
-                    moveSlide(1);
-                }, 0);
-                return;
+            } else {
+                currentIndex = index;
             }
+            track.style.transform = `translateX(-${(currentIndex - 1) * 100}%)`;
 
-            currentIndex = index;
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-            // 更新按鈕狀態（映射到真實圖片索引）
-            const buttonIndex = currentIndex === 0 ? totalSlides - 1 : currentIndex > totalSlides ? 0 : currentIndex - 1;
-            buttons.forEach(btn => btn.classList.remove('active'));
-            buttons[buttonIndex].classList.add('active');
+            buttons.forEach((btn, i) => {
+                btn.classList.toggle('active', i === currentIndex - 1);
+            });
         }
 
-        // 自動輪播
-        // setInterval(() => {
-        //     moveSlide(currentIndex + 1);
-        // }, 5000);
+        function openModal(imgElement) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("modalImg");
+            var caption = document.getElementById("caption");
+
+            modal.style.display = "block";
+            modalImg.src = imgElement.src;
+            caption.innerHTML = imgElement.alt;
+        }
+
+        function closeModal(event) {
+            // 如果點擊的是背景（modal），就關閉 modal
+            if (event.target === event.currentTarget) {
+                var modal = document.getElementById("imageModal");
+                modal.style.display = "none";
+            }
+        }
+
+        function updateCountdown() {
+            const weddingStartDate = new Date("2025-07-13T12:00:00").getTime(); // 婚禮開始時間 12:00
+            const weddingEndDate = new Date("2025-07-13T15:00:00").getTime(); // 婚禮結束時間 15:00
+            const currentTime = new Date().getTime();
+            const timeLeft = weddingStartDate - currentTime;
+
+            if (currentTime < weddingStartDate) {
+                // 婚禮尚未開始
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById("timer").innerHTML = `${days}天 ${hours}小時 ${minutes}分鐘 ${seconds}秒`;
+            } else if (currentTime >= weddingStartDate && currentTime <= weddingEndDate) {
+                // 婚禮進行中
+                document.getElementById("timer").innerHTML = "進行中";
+            } else {
+                // 婚禮結束後
+                document.getElementById("timer").innerHTML = "婚禮結束囉";
+            }
+        }
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
+
 
 </html>
