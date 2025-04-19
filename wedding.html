@@ -2,416 +2,138 @@
 <html lang="zh-Hant">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>楊書維 ❤ 莊玟芯 婚禮喜帖</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>婚禮倒數計時</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
-            margin: 0;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
             color: #333;
-        }
-
-        nav {
-            background-color: #ffffffcc;
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            padding: 12px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            padding: 8px 12px;
-            border-radius: 20px;
-            transition: background-color 0.3s;
-        }
-
-        nav a:hover {
-            background-color: #e0f2e0;
-        }
-
-        section {
-            padding: 32px 16px;
-            max-width: 700px;
-            margin: auto;
-        }
-
-        .hero {
-            height: 80vh;
-            background-image: url('images/background.jpg?auto=format&fit=crop&w=1050&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            flex-direction: column;
             text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 2.4em;
             margin: 0;
+            padding: 0;
         }
 
-        .hero p {
-            font-size: 1.2em;
-            margin-top: 8px;
-        }
-
-        .carousel {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 100%;
-            margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            background-color: #f5f5f5;
+        .countdown-container {
+            background: #f9f9f9;
             border-radius: 12px;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease;
-            width: 100%;
-            height: 100%;
-        }
-
-        .slide {
-            flex: 0 0 100%;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f5f5f5;
-            border-radius: 12px;
-        }
-
-        .slide img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 12px;
-        }
-
-        .carousel-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        .carousel-buttons button {
-            padding: 6px 10px;
-            border: none;
-            border-radius: 50%;
-            background-color: #ccc;
-            cursor: pointer;
-        }
-
-        .carousel-buttons button.active {
-            background-color: #6abf69;
-        }
-
-        .carousel-arrows {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            padding: 0 16px;
-        }
-
-        .arrow {
-            background-color: rgba(255, 255, 255, 0.6);
-            border: none;
-            padding: 8px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .arrow:hover {
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-
-        .button {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 50px 20px;
             display: inline-block;
-            margin-top: 16px;
-            padding: 12px 24px;
-            background-color: #6abf69;
-            color: white;
-            text-decoration: none;
-            border-radius: 24px;
-            transition: background-color 0.3s ease;
+            margin-top: 100px;
         }
 
-        .button:hover {
-            background-color: #57a45a;
-        }
-
-        .info-images {
-            display: flex;
-            gap: 16px;
-            margin-top: 16px;
-        }
-
-        .info-images img {
-            max-width: 60%;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .info-images img:hover {
-            transform: scale(1.1);
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 16px;
-        }
-
-        /* Modal 背景 */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.9);
-        }
-
-        /* Modal 內容 */
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 80%;
-            max-height: 80%;
-        }
-
-        /* 關閉按鈕 */
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
+        .countdown-container h1 {
             font-size: 40px;
+            color: #FF6F61;
             font-weight: bold;
-            cursor: pointer;
         }
 
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
+        .heading {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #FF6F61;
         }
 
-        /* 圖片說明文字 */
-        #caption {
-            text-align: center;
-            padding: 10px;
-            color: #ccc;
-        }
-
-
-        /* 倒數計時器樣式 */
-        #countdown {
-            text-align: center;
+        .clock {
             margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
-        #countdown h2 {
-            font-size: 2.4em;
-            margin-bottom: 10px;
-            color: #d17c3a;
+        .clock-item {
+            background: #FF6F61;
+            color: white;
+            border-radius: 8px;
+            padding: 20px 40px;
+            font-size: 32px;
             font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        #timer {
-            font-size: 3em;
-            color: #fff;
-            background: linear-gradient(145deg, #ffb3b3, #ff6666);
-            padding: 20px 30px;
-            border-radius: 15px;
-            display: inline-block;
+        .clock-item span {
+            display: block;
+            font-size: 18px;
+        }
+
+        .flip-clock {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .flip-clock .clock-item {
+            background: #FF6F61;
+            color: white;
+            border-radius: 8px;
+            padding: 20px 40px;
+            font-size: 32px;
             font-weight: bold;
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        #timer span {
-            display: inline-block;
-            padding: 0 10px;
+        .flip-clock .clock-item span {
+            display: block;
+            font-size: 18px;
         }
 
-        #timer:hover {
-            transform: scale(1.1);
+        .flip-clock .clock-item h3 {
+            font-size: 24px;
+            font-weight: normal;
         }
     </style>
 </head>
 
 <body>
-    <nav>
-        <a href="#home">💌 首頁</a>
-        <a href="#gallery">💍 婚紗紀實</a>
-        <a href="#info">🕊 婚宴資訊</a>
-        <a href="#transport">🚗 交通方式</a>
-    </nav>
 
-    <section id="home" class="hero">
-        <h1>楊書維 ❤ 莊玟芯</h1>
-        <p>誠摯邀請您一同見證幸福時刻</p>
-    </section>
-    <!-- 倒數計時器 -->
-    <section id="countdown">
-        <h2>婚禮倒數</h2>
-        <div id="timer">
-            <span id="days"></span>天
-            <span id="hours"></span>小時
-            <span id="minutes"></span>分鐘
-            <span id="seconds"></span>秒
-        </div>
-    </section>
-
-    <section id="gallery">
-        <h2>💍 婚紗照</h2>
-        <div class="carousel">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="slide"><img src="images/wedding1.jpg" alt="婚紗1" loading="lazy"></div>
-                <div class="slide"><img src="images/wedding2.jpg" alt="婚紗2" loading="lazy"></div>
-                <div class="slide"><img src="images/wedding3.jpg" alt="婚紗3" loading="lazy"></div>
-                <div class="slide"><img src="images/wedding4.jpg" alt="婚紗4" loading="lazy"></div>
-                <div class="slide"><img src="images/wedding5.jpg" alt="婚紗5" loading="lazy"></div>
-                <div class="slide"><img src="images/wedding6.jpg" alt="婚紗6" loading="lazy"></div>
-            </div>
-            <div class="carousel-arrows">
-                <button class="arrow" onclick="moveSlide(currentIndex - 1)">❮</button>
-                <button class="arrow" onclick="moveSlide(currentIndex + 1)">❯</button>
-            </div>
-            <div class="carousel-buttons">
-                <button onclick="moveSlide(1)" class="active"></button>
-                <button onclick="moveSlide(2)"></button>
-                <button onclick="moveSlide(3)"></button>
-                <button onclick="moveSlide(4)"></button>
-                <button onclick="moveSlide(5)"></button>
-                <button onclick="moveSlide(6)"></button>
-            </div>
-        </div>
-    </section>
-
-    <section id="info">
-        <h2>🕊 婚宴資訊</h2>
-        <p><strong>日期：</strong>2025/07/13（日）</p>
-        <p><strong>時間：</strong>午宴 12:00 準時開始</p>
-        <p><strong>地點：</strong>文華東方酒店</p>
-        <p>我們準備了迎賓小點心與飲品，歡迎您提早蒞臨享用，一同悠閒迎接這美好時刻。</p>
-    </section>
-
-    <section id="transport">
-        <h2>🚗 交通方式</h2>
-        <p>建議搭乘捷運至【台北小巨蛋站】，步行約 3 分鐘即可抵達文華東方酒店。</p>
-        <p>飯店備有免費停車位，開車前來的賓客，離開前記得找工作人員拿磁卡抵銷。</p>
-        <div class="info-images">
-            <img src="images/hotel1.jpg" alt="飯店路線圖" loading="lazy" onclick="openModal(this)">
-            <img src="images/hotel2.jpg" alt="婚宴會場圖" loading="lazy" onclick="openModal(this)">
-        </div>
-        <div id="imageModal" class="modal" onclick="closeModal(event)">
-            <span class="close" onclick="closeModal(event)">&times;</span>
-            <img class="modal-content" id="modalImg">
-            <div id="caption"></div>
-        </div>
-        <div class="button-container">
-            <a class="button" href="https://www.google.com/maps?q=文華東方酒店&hl=zh-TW" target="_blank">前往 Google 地圖</a>
-        </div>
-    </section>
+    <div class="countdown-container">
+        <h1>距離我們的大婚日還剩下</h1>
+        <div id="countdown" class="flip-clock"></div>
+    </div>
 
     <script>
-        updateCountdown()
-        let currentIndex = 1;
-        const track = document.getElementById('carouselTrack');
-        const buttons = document.querySelectorAll('.carousel-buttons button');
-        const totalSlides = 6;
+        // 設置婚禮的時間
+        const weddingDate = new Date("2025-07-13T00:00:00").getTime();
 
-        function moveSlide(index) {
-            if (index < 1) {
-                currentIndex = totalSlides;
-            } else if (index > totalSlides) {
-                currentIndex = 1;
-            } else {
-                currentIndex = index;
-            }
-            track.style.transform = `translateX(-${(currentIndex - 1) * 100}%)`;
-
-            buttons.forEach((btn, i) => {
-                btn.classList.toggle('active', i === currentIndex - 1);
-            });
-        }
-
-        function openModal(imgElement) {
-            var modal = document.getElementById("imageModal");
-            var modalImg = document.getElementById("modalImg");
-            var caption = document.getElementById("caption");
-
-            modal.style.display = "block";
-            modalImg.src = imgElement.src;
-            caption.innerHTML = imgElement.alt;
-        }
-
-        function closeModal(event) {
-            // 如果點擊的是背景（modal），就關閉 modal
-            if (event.target === event.currentTarget) {
-                var modal = document.getElementById("imageModal");
-                modal.style.display = "none";
-            }
-        }
-
+        // 更新倒數計時器
         function updateCountdown() {
-            const weddingStartDate = new Date("2025-07-13T12:00:00").getTime(); // 婚禮開始時間 12:00
-            const weddingEndDate = new Date("2025-07-13T15:00:00").getTime(); // 婚禮結束時間 15:00
-            const currentTime = new Date().getTime();
-            const timeLeft = weddingStartDate - currentTime;
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
 
-            if (currentTime < weddingStartDate) {
-                // 婚禮尚未開始
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                document.getElementById("timer").innerHTML = `${days}天 ${hours}小時 ${minutes}分鐘 ${seconds}秒`;
-            } else if (currentTime >= weddingStartDate && currentTime <= weddingEndDate) {
-                // 婚禮進行中
-                document.getElementById("timer").innerHTML = "進行中";
-            } else {
-                // 婚禮結束後
-                document.getElementById("timer").innerHTML = "婚禮結束囉";
-            }
+            // 更新顯示
+            document.getElementById("countdown").innerHTML = `
+                <div class="clock-item">
+                    <span>${days}</span>
+                    <h3>天</h3>
+                </div>
+                <div class="clock-item">
+                    <span>${hours}</span>
+                    <h3>小時</h3>
+                </div>
+                <div class="clock-item">
+                    <span>${minutes}</span>
+                    <h3>分鐘</h3>
+                </div>
+                <div class="clock-item">
+                    <span>${seconds}</span>
+                    <h3>秒</h3>
+                </div>
+            `;
         }
-        setInterval(updateCountdown, 1000);
-    </script>
-</body>
 
+        // 每秒更新一次倒數計時器
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // 初始執行一次
+    </script>
+
+</body>
 
 </html>
