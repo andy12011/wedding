@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楊書維 ❤ 莊玟芯 婚禮喜帖</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        nav {
+            background-color: #ffffffcc;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            padding: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #e0f2e0;
+        }
+
+        section {
+            padding: 32px 16px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .hero {
+            height: 80vh;
+            background-image: url('images/background.png?auto=format&fit=crop&w=1050&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.4em;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-top: 8px;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            /* 更適合橫式圖片，同時兼容直式 */
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-track img {
+            flex: 0 0 100%;
+            /* 每個圖片佔據 100% 容器寬度 */
+            width: 100%;
+            height: 100%;
+            object-position: center center;
+            border-radius: 12px;
+        }
+
+        .portrait {
+            object-fit: contain;
+            /* 直式圖片完整顯示 */
+            max-height: 100%;
+            /* 防止直式圖片溢出 */
+        }
+
+        .landscape {
+            object-fit: cover;
+            /* 橫式圖片填充容器 */
+        }
+
+        .carousel-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .carousel-buttons button {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        .carousel-buttons button.active {
+            background-color: #6abf69;
+        }
+
+        .carousel-arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 16px;
+        }
+
+        .arrow {
+            background-color: rgba(255, 255, 255, 0.6);
+            border: none;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .arrow:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 12px 24px;
+            background-color: #6abf69;
+            color: white;
+            text-decoration: none;
+            border-radius: 24px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #57a45a;
+        }
+
+        .info-images {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .info-images img {
+            width: 80%;
+            margin: 0 auto;
+            border-radius: 12px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="#home">💌 首頁</a>
+        <a href="#gallery">💍 婚紗紀實</a>
+        <a href="#info">🕊 婚宴資訊</a>
+        <a href="#transport">🚗 交通方式</a>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>楊書維 ❤ 莊玟芯</h1>
+        <p>誠摯邀請您一同見證幸福時刻</p>
+    </section>
+
+    <section id="gallery">
+        <h2>💍 婚紗紀實</h2>
+        <div class="carousel">
+            <div class="carousel-track" id="carouselTrack">
+
+                <!-- 原始圖片 -->
+                <img class="portrait" src="images/wedding1.jpg" alt="婚紗1" loading="lazy">
+                <img class="portrait" src="images/wedding2.jpg" alt="婚紷2" loading="lazy">
+                <img class="landscape" src="images/wedding3.jpg" alt="婚紷3" loading="lazy">
+                <img class="landscape" src="images/wedding4.jpg" alt="婚紷4" loading="lazy">
+                <img class="landscape" src="images/wedding5.jpg" alt="婚紷5" loading="lazy">
+                <img class="landscape" src="images/wedding6.jpg" alt="婚紷6" loading="lazy">
+
+            </div>
+            <div class="carousel-arrows">
+                <button class="arrow" onclick="moveSlide(currentIndex - 1)">❮</button>
+                <button class="arrow" onclick="moveSlide(currentIndex + 1)">❯</button>
+            </div>
+            <div class="carousel-buttons">
+                <button onclick="moveSlide(1)" class="active"></button>
+                <button onclick="moveSlide(2)"></button>
+                <button onclick="moveSlide(3)"></button>
+                <button onclick="moveSlide(4)"></button>
+                <button onclick="moveSlide(5)"></button>
+                <button onclick="moveSlide(6)"></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="info">
+        <h2>🕊 婚宴資訊</h2>
+        <p><strong>日期：</strong>2025/07/13（日）</p>
+        <p><strong>時間：</strong>午宴 12:00 準時開始</p>
+        <p><strong>地點：</strong>文華東方酒店</p>
+        <p>我們準備了迎賓小點心與飲品，歡迎您提早蒞臨享用，一同悠閒迎接這美好時刻。</p>
+    </section>
+
+    <section id="transport">
+        <h2>🚗 交通方式</h2>
+        <p>建議搭乘捷運至【台北小巨蛋站】，步行約 3 分鐘即可抵達文華東方酒店。</p>
+        <p>飯店備有免費停車位，開車前來的賓客，離開前記得找工作人員拿磁卡抵銷。</p>
+        <div class="info-images">
+            <img src="images/hotel1.jpg" alt="飯店外觀或入口" loading="lazy">
+            <img src="images/hotel2.jpg" alt="婚宴會場示意圖" loading="lazy">
+        </div>
+        <div class="button-container">
+            <a class="button" href="https://maps.google.com/?q=文華東方酒店" target="_blank">查看地圖</a>
+        </div>
+    </section>
+
+    <script>
+        let currentIndex = 1; // 從第一張真實圖片開始
+        const track = document.getElementById('carouselTrack');
+        const buttons = document.querySelectorAll('.carousel-buttons button');
+        const totalSlides = 6; // 真實圖片數量（不含複製的頭尾）
+
+        function moveSlide(index) {
+            // 限制 index 範圍，考慮複製的頭尾
+            if (index < 0) {
+                // 從第一張向前，跳到最後一張
+                currentIndex = totalSlides;
+                track.style.transition = 'none'; // 禁用動畫
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                setTimeout(() => {
+                    track.style.transition = 'transform 0.5s ease'; // 恢復動畫
+                    moveSlide(totalSlides);
+                }, 0);
+                return;
+            } else if (index > totalSlides + 1) {
+                // 從最後一張向後，跳到第一張
+                currentIndex = 1;
+                track.style.transition = 'none'; // 禁用動畫
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                setTimeout(() => {
+                    track.style.transition = 'transform 0.5s ease'; // 恢復動畫
+                    moveSlide(1);
+                }, 0);
+                return;
+            }
+
+            currentIndex = index;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            // 更新按鈕狀態（映射到真實圖片索引）
+            const buttonIndex = currentIndex === 0 ? totalSlides - 1 : currentIndex > totalSlides ? 0 : currentIndex - 1;
+            buttons.forEach(btn => btn.classList.remove('active'));
+            buttons[buttonIndex].classList.add('active');
+        }
+
+        // 自動輪播
+        // setInterval(() => {
+        //     moveSlide(currentIndex + 1);
+        // }, 5000);
+    </script>
+</body>
+
+</html>
