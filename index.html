@@ -206,7 +206,7 @@
         <p class="mt-2 text-xl font-mono">誠摯邀請您一同見證幸福時刻</p>
     </section> -->
 
-    <section id="home" class="fade-in flex flex-col items-center justify-center text-white text-center"
+    <section id="home" class="scroll-mt-20 fade-in flex flex-col items-center justify-center text-white text-center"
         data-aos="fade-up">
         <h1>楊書維 ❤ 莊玟芯</h1>
         <p>誠摯邀請您一同見證幸福時刻</p>
@@ -214,8 +214,7 @@
 
 
     <section class="scroll-mt-20 max-w-3xl mx-auto py-12">
-        <h2 id="countdown-header" class="text-2xl font-bold mb-4 text-center text-black"><i
-                class="fa-regular fa-clock"></i> 婚禮倒數日</h2>
+        <h2 id="countdown-header" class="text-2xl font-bold mb-4 text-center text-black">⏰ 婚禮倒數日</h2>
         <div id="countdown" class="flip-clock"></div>
     </section>
 
@@ -409,17 +408,17 @@
             const countdownHeader = document.getElementById('countdown-header');
 
             if (now >= weddingDate && now <= weddingEnd) { // 婚禮進行中
-                countdownHeader.innerHTML = '<i class="fa-regular fa-clock"></i> 婚禮進行中'
+                countdownHeader.innerHTML = '⏰ 婚禮進行中'
                 document.getElementById("countdown").innerHTML = ` <div class="clock-item">
             <h3>婚禮開始囉</h3>
         </div>`
             } else if (now > weddingEnd) { // 婚禮已結束
-                countdownHeader.innerHTML = '<i class="fa-regular fa-clock"></i> 婚禮結束囉'
+                countdownHeader.innerHTML = '⏰ 婚禮結束囉'
                 document.getElementById("countdown").innerHTML = ` <div class="clock-item">
             <h3>婚禮結束囉</h3>
         </div>`
             } else { // 婚禮還未開始
-                countdownHeader.innerHTML = '<i class="fa-regular fa-clock"></i> 婚禮倒數中...'
+                countdownHeader.innerHTML = '⏰ 婚禮倒數中...'
                 // 更新顯示倒數時間
                 document.getElementById("countdown").innerHTML = `
         <div class="clock-item">
